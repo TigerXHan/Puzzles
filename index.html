@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Puzzle Answer Checker</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      width: 300px;
+      text-align: center;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      margin-top: 15px;
+      padding: 10px;
+      width: 100%;
+      border: none;
+      border-radius: 5px;
+      background: #007BFF;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    #feedback {
+      margin-top: 15px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Enter Answer</h2>
+    <input type="text" id="answerInput" placeholder="Your answer here">
+    <button onclick="checkAnswer()">Submit</button>
+    <div id="feedback"></div>
+  </div>
+
+  <script>
+    // =========================
+    // ANSWER CONFIGURATION
+    // =========================
+    // Add answers here. Keys = normalized answers
+    // Each answer can have custom feedback
+    const ANSWERS = {
+      "cube": {
+        correct: true,
+        message: "Correct! Nice work."
+      },
+      "square": {
+        correct: false,
+        message: "You're thinking in 2D... try expanding your perspective."
+      },
+      "sphere": {
+        correct: false,
+        message: "Close, but think more angular."
+      }
+    };
+
+    // Normalize input (edit if needed)
+    function normalize(input) {
+      return input.trim().toLowerCase();
+    }
+
+    function checkAnswer() {
+      const input = document.getElementById("answerInput").value;
+      const normalized = normalize(input);
+      const feedbackDiv = document.getElementById("feedback");
+
+      if (normalized in ANSWERS) {
+        const result = ANSWERS[normalized];
+        feedbackDiv.textContent = result.message;
+        feedbackDiv.style.color = result.correct ? "green" : "orange";
+      } else {
+        feedbackDiv.textContent = "Incorrect. Try again.";
+        feedbackDiv.style.color = "red";
+      }
+    }
+  </script>
+</body>
+</html>
