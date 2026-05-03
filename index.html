@@ -102,7 +102,7 @@
   <div class="container">
     <h2>🔍 Puzzle Portal</h2>
     <p>Enter your answer:</p>
-    <input type="text" id="answerInput" placeholder="Type your answer...">
+    <input type="text" id="answerInput" placeholder="Type your answer in all lowercase...">
     <button onclick="checkAnswer()">Submit</button>
     <div id="feedback"></div>
     <div class="footer">Puzzle Hunt Interface</div>
@@ -110,18 +110,14 @@
 
   <script>
     const ANSWERS = {
-      "cube": {
-        correct: true,
-        message: "Correct! The truth reveals itself."
-      },
-      "square": {
+      "hexahedron": {
         correct: false,
-        message: "You're thinking in 2D... try expanding your perspective."
+        message: "You're halfway there?"
       },
-      "sphere": {
+      "dimensionally": {
         correct: false,
-        message: "Close, but think sharper edges."
-      }
+        message: "Congrats! You have solved this puzzle. Stay tuned for future puzzle drops!"
+      },
     };
 
     function normalize(input) {
